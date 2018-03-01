@@ -1,0 +1,57 @@
+package com.test.filter;
+
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+
+/**
+ * Servlet Filter implementation class EncordingFilter
+ */
+@WebFilter("/EncordingFilter")
+public class EncordingFilter implements Filter {
+
+	private String charEncording = null;
+	
+    /**
+     * Default constructor. 
+     */
+    public EncordingFilter() {
+    }
+    
+	/**
+	 * @see Filter#init(FilterConfig)
+	 */
+	public void init(FilterConfig fConfig) throws ServletException {
+		charEncording = fConfig.getInitParameter("encording");
+		if(charEncording == null){
+			  throw new ServletException("Encording 中的编码设置为空！");
+		}
+	}
+
+
+	/**
+	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 */
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		if(!charEncording.equals(request.getCharacterEncoding())){
+			request.setCharacterEncoding(charEncording);
+		}
+		response.setCharacterEncoding(charEncording);
+		chain.doFilter(request, response);
+	}
+	
+
+	/**
+	 * @see Filter#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+
+}

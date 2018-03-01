@@ -1,0 +1,29 @@
+
+  <filter>
+    <filter-name>Filterone</filter-name>
+    <filter-class>com.test.filter.FilterOne</filter-class>
+    <init-param>
+      <param-name>param</param-name>
+      <param-value>test</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>Filterone</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+
+  
+   <filter>
+    <filter-name>EncordingFilter</filter-name>
+    <filter-class>com.test.filter.EncordingFilter</filter-class>
+    <init-param>
+      <param-name>encording</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncordingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
